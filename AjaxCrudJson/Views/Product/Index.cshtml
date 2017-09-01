@@ -1,0 +1,69 @@
+﻿@model IEnumerable<AjaxCrudJson.Models.MyAjaxModel>
+
+@{
+ViewBag.Title = "Product List";
+Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Products</h2>
+
+<p>
+    <button type="button" id="btnCreate" class="btn btn-primary" data-toggle="modal" data-target="#productModal">
+        Create New
+    </button>
+</p>
+
+<table id="listProducts" class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody></tbody> <!--Load data from AJAX Json-->
+</table>
+
+<!--Insert/Update Model-->
+<div id="productModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="add_update_form" method="post" action="#">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><label id="title"></label></h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <input type="hidden" class="form-control" id="Id" />
+                                <label>Name</label>
+                                <input type="text" id="Name" name="Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label>Price</label>
+                                <input type="text" id="Price" name="Price" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btnSave" class="btn btn-primary">Save</button>
+                    <button type="button" id="btnClose" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/lib/product.js"></script>
+}
